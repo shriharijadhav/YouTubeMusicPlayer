@@ -84,14 +84,12 @@ const handleModalOpenForPlaylist = () => {
       if (previousUrlIndex === randomNum) {
         let newRandomNum = randomNum === 0 ? randomNum + 1 : randomNum - 1;
         setPreviousUrlIndex(newRandomNum);
-        setCurrentIndex(newRandomNum);
-        // console.log(newRandomNum);
+         // console.log(newRandomNum);
         // return newRandomNum;
        } else {
         // prevNum = randomNum;
         setPreviousUrlIndex(randomNum);
-        setCurrentIndex(randomNum);
-
+ 
         // console.log(randomNum);
         // return randomNum;
        }
