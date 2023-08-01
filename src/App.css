@@ -1,38 +1,229 @@
-.App {
-  text-align: center;
+.audioBar::-webkit-media-controls-panel{
+  background-color: #fff;
+ }
+
+ .dark .audioBar::-webkit-media-controls-panel{
+  background-color:#6366F1;
+ }
+
+
+ .audioBar::-webkit-media-controls-rewind-button{
+  visibility: visible;
+ }
+
+/* button{
+  background-color: pink;
+  padding: 2;
+  border: 1px solid black;
+  margin: 1rem;
+} */
+
+.controlButton{
+  background-color: transparent !important;
+  border: none !important;
+  width: 3.5rem;
+  height: 3.5rem;
 }
 
-.App-logo {
-  height: 40vmin;
+/* code for toggle button */
+
+
+label {
   pointer-events: none;
 }
+label .input {
+  display: none;
+}
+label .input:checked + .toggle-wrapper {
+  box-shadow: 0 8px 14px 0 #1233d71f;
+}
+label .input:checked + .toggle-wrapper > .selector {
+  left: calc(100% - 50px);
+  background-color: #ee5f39;
+  box-shadow: 0 8px 14px 0 rgba(230, 3, 3, 0.12);
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+}
+label .input:checked ~ .notification > .selected:before {
+  content: "Yes";
+}
+label .toggle-wrapper {
+  position: relative;
+  width: 100px;
+  height: 30px;
+  border-radius: 999px;
+  margin: auto;
+  cursor: pointer;
+  pointer-events: all;
+ }
+label .toggle-wrapper .selector {
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  background-color: #3957ee;
+  transition: left 0.25s ease;
+  border-radius: 50%;
+
+}
+label .notification {
+  font-size: 20px;
+  width: 100%;
+}
+label .notification .selected:before {
+  content: "No";
+  font-size: 20px;
+  border-bottom: 2px solid;
+}
+/* code for toggle button ends */
+
+/* For WebKit browsers (Chrome, Safari) */
+/* These styles will be applied to both the vertical and horizontal scrollbars */
+
+/* Track */
+::-webkit-scrollbar {
+  width: 10px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* Thumb */
+::-webkit-scrollbar-thumb {
+  background-color: #8e90f6;
+  border-radius: 5px;
+  height: 10px;
+  width: 20px;
+  cursor: grab;
 }
 
-.App-link {
-  color: #61dafb;
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+   background-color: #6366F1;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* For Firefox */
+/* These styles will be applied to both the vertical and horizontal scrollbars */
+
+/* Track */
+/* Note: The scrollbar-width property is experimental and may not be supported in all browsers */
+/* To hide the scrollbar in Firefox, set scrollbar-width to none */
+/* To customize the scrollbar in Firefox, adjust the width and background-color */
+.dark ::-webkit-scrollbar-track{
+  background-color: #374151;
+
 }
+::-webkit-scrollbar-track{
+  background-color: #D1D5DB;
+
+}
+
+/* Thumb */
+/* Note: The scrollbar-color property is experimental and may not be supported in all browsers */
+/* To customize the scrollbar thumb in Firefox, adjust the background-color and border-radius */
+ 
+
+/* for slider */
+
+.main {
+  grid-area: main;
+  padding: 0;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  cursor: default;
+}
+
+.items {
+  position: relative;
+  width: 100%;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  transition: all 0.2s;
+  transform: scale(0.98);
+  will-change: transform;
+  user-select: none;
+  background-color: #393939;
+  border-radius: 1.5rem;
+  padding: 0rem 1rem;
+}
+
+.items.active {
+  background: #555555;
+  cursor: grabbing;
+  cursor: -webkit-grabbing;
+  transform: scale(1);
+}
+
+.item {
+  display: inline-block;
+  min-height: 17rem;
+  min-width: 12rem;
+  margin: 1em 0.7em;
+  margin-top: 1.5rem;
+  border-radius: 1.5rem;
+  cursor: grab;
+}
+.grid-container {
+  overflow-x: auto;
+}
+
+/* Track */
+.customScrollBar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.customScrollBar::-webkit-scrollbar-track {
+  background-color: #858484;
+  border-radius: 1rem;
+}
+
+/* Handle */
+.customScrollBar::-webkit-scrollbar-thumb {
+  background-color: #555454;
+  border-radius: 1rem;
+}
+
+.customScrollBar::-webkit-scrollbar-thumb:hover {
+  background-color: #d0cdcd;
+}
+
+
+/* Track for playlist */
+.noScrollBarForPlaylist::-webkit-scrollbar {
+  display: none;
+}
+.dark .ScrollBarForHelp::-webkit-scrollbar-track {
+  background-color: #9CA3AF;
+  border-radius: 1rem;
+}
+.ScrollBarForHelp::-webkit-scrollbar-track {
+  background-color: #A5B4FC;
+  border-radius: 1rem;
+}
+
+.red-gradient {
+  background: linear-gradient(to bottom right,  #e70000, #540101);
+cursor:pointer;
+
+}
+
+.yellow-gradient {
+  background: linear-gradient(to bottom right, #d1d103, #505002);
+cursor:pointer;
+}
+.green-gradient {
+  background: linear-gradient(to bottom right, #31a131, #003800);
+cursor:pointer;
+}
+.blue-gradient {
+  background: linear-gradient(to bottom right, #7070f8, #2e2e78);
+  cursor:pointer;
+}
+.purple-gradient {
+  background: linear-gradient(to bottom right, #c45fff, #46028a);
+}
+
+.pink-gradient {
+  background: linear-gradient(to right, #d907c4, #7c0470);
+}
+
+
