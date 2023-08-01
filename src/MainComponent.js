@@ -73,7 +73,7 @@ const handleModalOpenForPlaylist = () => {
   
   const [dataFetchedForFirstURL ,setDataFetchedForFirstURL] = useState(false);
   
-  const [previousUrlIndex, setPreviousUrlIndex] = useState(2);
+  const [previousUrlIndex, setPreviousUrlIndex] = useState(1);
      // for shuffling the list
      
     const getRandomUrlIndex = max => {
