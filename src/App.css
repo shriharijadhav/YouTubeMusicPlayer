@@ -201,29 +201,29 @@ label .notification .selected:before {
 }
 
 .red-gradient {
-  background: linear-gradient(to bottom right,  #e70000, #540101);
+  background: linear-gradient(to bottom right,  #f75656, #340202);
 cursor:pointer;
 
 }
 
 .yellow-gradient {
-  background: linear-gradient(to bottom right, #d1d103, #505002);
+  background: linear-gradient(to bottom right, #f7f776, #505002);
 cursor:pointer;
 }
 .green-gradient {
-  background: linear-gradient(to bottom right, #31a131, #003800);
+  background: linear-gradient(to bottom right, #81f881, #003800);
 cursor:pointer;
 }
 .blue-gradient {
-  background: linear-gradient(to bottom right, #7070f8, #2e2e78);
+  background: linear-gradient(to bottom right, #8989f1, #2e2e78);
   cursor:pointer;
 }
 .purple-gradient {
-  background: linear-gradient(to bottom right, #c45fff, #46028a);
+  background: linear-gradient(to bottom right, #ca87f1, #46028a);
 }
 
 .pink-gradient {
-  background: linear-gradient(to right, #d907c4, #7c0470);
+  background: linear-gradient(to bottom right, #fa62eb, #560d4f);
 }
 
 

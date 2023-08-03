@@ -25,8 +25,8 @@ function PlayListSuggestions({successToast,setOpenModalForPlaylist,setUrlArray,u
       id:3,
       heading: 'Travel Time',
       topSinger:'Joyful & Vibrant',
-      gradientClass:'purple-gradient'
-      
+      gradientClass:'yellow-gradient'
+
     },
     {
     id:4,
@@ -41,7 +41,8 @@ function PlayListSuggestions({successToast,setOpenModalForPlaylist,setUrlArray,u
       
       heading: 'Pop Songs',
       topSinger:'Taylor Swift',
-      gradientClass:'yellow-gradient'
+      gradientClass:'purple-gradient'
+
       
     },
     {
