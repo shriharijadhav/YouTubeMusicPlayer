@@ -1,7 +1,12 @@
-import React from 'react';
-import './App.css';
+import React, { useContext } from 'react';
+import '../App.css';
+import { topLevelContext } from '../Context';
+
    
-function ModalForHelp({ setOpenModalForHelp}) {
+function ModalForHelp() {
+
+    const {setOpenModalForHelp} = useContext(topLevelContext);
+
 
 const stepsToUseMusicPlayer = [
     {
@@ -63,7 +68,7 @@ const features =[
     {
         id:6,
         featureTitle:'🚀 Save upto 95% data',
-        descriptionOfFeature:'Experience the true potential of our app and enjoy streaming audio-only for your favorite YouTube videos, saving you a remarkable 95% in data usage'
+        descriptionOfFeature:'Experience the true potential of our app and enjoy streaming audio-only for your favorite YouTube videos, saving you a remarkable 95% in data usage.'
     }
 
 ];

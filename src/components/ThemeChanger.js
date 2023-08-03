@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { topLevelContext } from '../Context';
 
-const ToggleTheme = ({toggleTheme}) => {
+const ToggleTheme = () => {
+  const {toggleTheme} = useContext(topLevelContext);
   return (
     <div>
     <label htmlFor='toggle' >

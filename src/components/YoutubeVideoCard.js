@@ -1,8 +1,10 @@
-import React, {useState} from 'react';
-import done from './images/done.svg';
+import React, {useContext, useState} from 'react';
+import done from '../images/done.svg';
+import { topLevelContext } from '../Context';
  
-const YoutubeVideoCard = ({ title, thumbnailUrl ,channelName,videoId,successToast,urlArray,setUrlArray}) => {
+const YoutubeVideoCard = ({ title, thumbnailUrl ,channelName,videoId}) => {
 
+  const {successToast,urlArray,setUrlArray} = useContext(topLevelContext);
     const tempVideoTitle = title ? title :` `;
     const tempVideoTitleThumbnailUrl = thumbnailUrl ? thumbnailUrl :` `;
  
@@ -11,9 +13,9 @@ const YoutubeVideoCard = ({ title, thumbnailUrl ,channelName,videoId,successToas
 
    const handleClick = (videoId) => {
     try {
-      console.log(videoId);
+      // console.log(videoId);
       let formattedUrlFromParams = `https://www.youtube.com/watch?v=${videoId}`;
-      console.log(formattedUrlFromParams);
+      // console.log(formattedUrlFromParams);
       setAddedVideoIds(addedVideoIds.concat(videoId));
   
       // const tempArray = [...addedVideoIds, formattedUrlFromParams];

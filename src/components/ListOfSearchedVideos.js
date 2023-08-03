@@ -1,8 +1,10 @@
-import React from 'react'
-import bgImgForSearch from './images/SearchDefaultbackground.svg';
+import React, { useContext } from 'react'
+import bgImgForSearch from '../images/SearchDefaultbackground.svg';
 import LoaderForSearch from './LoaderForSearch';
 import YoutubeVideoCard from './YoutubeVideoCard';
-const ListOfSearchedVideos = ({displayDefaultImgForSearch,dataFetchedSuccess,searchDataAfterFetch,successToast,urlArray,setUrlArray}) => {
+import { topLevelContext } from '../Context';
+const ListOfSearchedVideos = () => {
+  const {displayDefaultImgForSearch,dataFetchedSuccess,searchDataAfterFetch} = useContext(topLevelContext);
   return (
     <div className='px-0 md:px-5 lg:px-1 max-h-96 overflow-x-hidden overflow-y-scroll ScrollBarForHelp my-3 '>
     {
@@ -23,7 +25,7 @@ const ListOfSearchedVideos = ({displayDefaultImgForSearch,dataFetchedSuccess,sea
                {
                 searchDataAfterFetch.length !==0 ? ( 
                   searchDataAfterFetch.map((video,index)=>{return(
-                    <YoutubeVideoCard title={video.snippet.title} thumbnailUrl={video.snippet.thumbnails.medium.url} key={index} videoId={video.id.videoId}  channelName={video.snippet.channelTitle} successToast={successToast} urlArray={urlArray} setUrlArray={setUrlArray}/>
+                    <YoutubeVideoCard title={video.snippet.title} thumbnailUrl={video.snippet.thumbnails.medium.url} key={index} videoId={video.id.videoId}  channelName={video.snippet.channelTitle} />
 
                   )
                   })

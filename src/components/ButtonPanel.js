@@ -1,15 +1,17 @@
-import React, {   } from 'react'
+import React, { useContext } from 'react'
 import left from '../images/leftArrowCopy.svg'
 import right from '../images/rightArrowCopy.svg'
 import shuffle from '../images/shuffle.svg'
 import clearQueue from '../images/clearQueue.svg'
 import saveToLocal from '../images/saveToLocalFinal.svg'
+import { topLevelContext } from '../Context'
 // for tooltip
 
 
 
-const ButtonPanel = ({getPreviousItem,getNextItem,clearList,getShuffledUrlData,urlArray,handleModalOpen}) => {
-      
+const ButtonPanel = () => {
+
+    const {getPreviousItem,getNextItem,clearList,getShuffledUrlData,handleModalOpen} = useContext(topLevelContext);
   return (
     <div className='flex flex-row  pt-2  items-center justify-evenly'>
  

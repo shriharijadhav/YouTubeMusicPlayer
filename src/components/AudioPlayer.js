@@ -1,10 +1,12 @@
-import React, { useRef,  useEffect } from 'react';
+import React, { useRef,  useEffect, useContext } from 'react';
 import '../App.css'
+import { topLevelContext } from '../Context';
 
 
 
-const AudioPlayer = ({videoDetails,currentIndex,setCurrentIndex,getNextUrlData,urlArray,warningToast}) => {
+const AudioPlayer = () => {
 
+  const {videoDetails,currentIndex,setCurrentIndex,getNextUrlData,urlArray,warningToast}= useContext(topLevelContext);
       
   function hasNext(urlArray, currentIndex) {
     return currentIndex < urlArray.length - 1;
@@ -49,6 +51,7 @@ const AudioPlayer = ({videoDetails,currentIndex,setCurrentIndex,getNextUrlData,u
       if(videoDetails.length !==0)
     {audioElement.removeEventListener('ended', handleEnded);}
     };
+    
   }, [videoDetails.length,setCurrentIndex,urlArray,currentIndex,getNextUrlData,warningToast]);
 
   
@@ -69,7 +72,6 @@ const AudioPlayer = ({videoDetails,currentIndex,setCurrentIndex,getNextUrlData,u
   {
     renderConditionalAudioTrack()
   } 
-  {/*<audio ref={audioRef} src={items[currentIndex].audioFIle}     controlsList='nodownload' className='w-full audioBar'  controls autoPlay={true} />*/}
   </div>
 
  

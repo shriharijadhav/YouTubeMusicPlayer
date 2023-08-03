@@ -1,12 +1,12 @@
-// import './App.css';
+import './App.css';
 import React, { useEffect, useState } from 'react';
 
 
 //  import 'react-toastify/dist/ReactToastify.css';
 
  
-import MainComponent from './MainComponent';
-import LoaderForOfflineUser from './LoaderForOfflineUser';
+import MainComponent from './components/MainComponent';
+import LoaderForOfflineUser from './components/LoaderForOfflineUser';
 // import OnlineStatusChecker from './OnlineStatusChecker';
 
  

@@ -1,6 +1,8 @@
-import React from 'react'
- const QueueStatus = ({urlArray,currentIndex}) => {
+import React, { useContext } from 'react'
+import { topLevelContext } from '../Context';
+ const QueueStatus = () => {
 
+  const {urlArray,currentIndex} = useContext(topLevelContext);
  
 let displayIndex = null;
 

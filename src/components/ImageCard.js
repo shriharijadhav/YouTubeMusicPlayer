@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import YTMusicPlayer_Thumbnail from '../images/thumbnailImage/YTMusicPlayer_Thumbnail.png'
+import { topLevelContext } from '../Context';
  
-const ImageCard = ({videoDetails}) => {
+const ImageCard = () => {
+
+  const {videoDetails} = useContext(topLevelContext);
 
   let imagePath = '';
 

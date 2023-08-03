@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import ListOfSearchedVideos from './ListOfSearchedVideos'
-import imgForSearchIcon from './images/Search.svg'
+import imgForSearchIcon from '../images/Search.svg'
+import { topLevelContext } from '../Context'
  
-const ModalForSearch = ({setOpenModalForSearch,youtubeSearchQuery,setYoutubeSearchFlag,setYoutubeSearchQuery,isLoadingForSearch,setIsLoadingForSearch,displayDefaultImgForSearch,setDisplayDefaultImgForSearch,dataFetchedSuccess,searchDataAfterFetch,successToast,urlArray,setUrlArray}) => {
+const ModalForSearch = () => {
+
+  const {setOpenModalForSearch,youtubeSearchQuery,setYoutubeSearchFlag,setYoutubeSearchQuery,setDisplayDefaultImgForSearch} = useContext(topLevelContext);
 
     const handleSearchSubmit = (event) => {
         event.preventDefault();
@@ -37,7 +40,7 @@ const ModalForSearch = ({setOpenModalForSearch,youtubeSearchQuery,setYoutubeSear
     </div>
 
  
-    <ListOfSearchedVideos displayDefaultImgForSearch={displayDefaultImgForSearch} dataFetchedSuccess={dataFetchedSuccess} searchDataAfterFetch={searchDataAfterFetch} successToast={successToast} urlArray={urlArray} setUrlArray={setUrlArray}/>
+    <ListOfSearchedVideos />
  
     </div>
   </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import PlaylistItemFinal from './PlaylistItemFinal';
-import './App.css';
+import '../App.css';
 import { Bollywood_Songs_array,handPickedByHarry} from './ArraysOfPlaylist';
 
 function PlayListSuggestions({successToast,setOpenModalForPlaylist,setUrlArray,urlArray,setSuggestedPlaylistFlag,setSuggestedPlaylistLength}) {

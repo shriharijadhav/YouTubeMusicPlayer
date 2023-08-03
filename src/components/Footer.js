@@ -1,5 +1,5 @@
 import React from 'react'
-import CircularDiv from '../CircularDiv';
+import CircularDiv from './CircularDiv';
 
 // logos
 import twitterLogo from '../images/twitterLogo.svg'

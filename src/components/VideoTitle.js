@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { topLevelContext } from '../Context';
 
-const VideoTitle = ({videoDetails, currentIndex}) => {
+const VideoTitle = () => {
 
+  const {videoDetails} = useContext(topLevelContext);
   let titleForVideo = '';
 
-  // const displayVideoTitle = () =>{
-  //  }
 
   videoDetails.length === 0 ? titleForVideo = 'Youtube Music Player' : titleForVideo = videoDetails.videoTitle;
   return (

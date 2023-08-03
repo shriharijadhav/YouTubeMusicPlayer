@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PlayListSuggestions from './PlayListSuggestions';
+import { topLevelContext } from '../Context';
   
-function ModalForPlaylist({ setOpenModalForPlaylist,setUrlArray,urlArray,setSuggestedPlaylistFlag,setSuggestedPlaylistLength,successToast}) {
+function ModalForPlaylist() {
+  const { setOpenModalForPlaylist,setUrlArray,urlArray,setSuggestedPlaylistFlag,setSuggestedPlaylistLength,successToast} = useContext(topLevelContext);
   return (
     <div className='modalBackground '>
       <div className='modalContainer  dark:bg-gray-400 bg-indigo-300 dark:text-indigo-900 text-indigo-900 w-10/12 sm:w-10/12 md:w-7/12 lg:w-7/12 xl:w-7/12 mx-auto flex flex-col gap-5 z-50 p-10 rounded-xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
