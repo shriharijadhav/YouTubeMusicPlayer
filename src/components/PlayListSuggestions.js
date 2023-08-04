@@ -1,7 +1,7 @@
 import React from 'react';
 import PlaylistItemFinal from './PlaylistItemFinal';
 import '../App.css';
-import { Bollywood_Songs_array,handPickedByHarry} from './ArraysOfPlaylist';
+import { Bollywood_latest_25,handPickedByHarry,lofi_playlist,travel_playlist} from './ArraysOfPlaylist';
 
 function PlayListSuggestions({successToast,setOpenModalForPlaylist,setUrlArray,urlArray,setSuggestedPlaylistFlag,setSuggestedPlaylistLength}) {
   let dummyVariable= null;
@@ -16,31 +16,33 @@ function PlayListSuggestions({successToast,setOpenModalForPlaylist,setUrlArray,u
     },
     {
     id:2,
-    heading: 'Bollywood Songs',
-    topSinger:'Arijit Singh',
+    heading: 'Bollywood Latest',
+    topSinger:'Top 25',
     gradientClass:'pink-gradient',
-    playlistSongUrls:[Bollywood_Songs_array],
+    playlistSongUrls:[Bollywood_latest_25],
     },
     {
       id:3,
       heading: 'Travel Time',
       topSinger:'Joyful & Vibrant',
-      gradientClass:'yellow-gradient'
+      gradientClass:'yellow-gradient',
+      playlistSongUrls:[travel_playlist],
 
     },
     {
     id:4,
     heading: 'Lofi Beats',
-    topSinger:'Chillax',
-    gradientClass:'green-gradient'
+     topSinger:'Chillax bedtime',
+    gradientClass:'green-gradient',
+    playlistSongUrls:[lofi_playlist],
 
    
     },
     {
       id:5,
       
-      heading: 'Pop Songs',
-      topSinger:'Taylor Swift',
+      heading: 'Trending & Viral',
+      topSinger:'Instagram Reels',
       gradientClass:'purple-gradient'
 
       

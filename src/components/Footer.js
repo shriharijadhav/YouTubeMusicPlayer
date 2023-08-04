@@ -22,7 +22,7 @@ const Footer = () => {
             <CircularDiv backgroundColor={'#2563EB'} imagePath={linkedInLogo} title={"LinkedIn"} socialProfileUrl={'https://www.linkedin.com/in/shriharijadhav126/'}/>
 
         </div>
-        <div className='text-base text-gray-600 dark:text-gray-400 dark:hover:text-gray-100 hover:cursor-pointer  ' onClick = {handleOnclick} title='Click to Get in Touch'>
+        <div className='text-base text-gray-500 hover:text-gray-900 hover:text-s dark:text-gray-400 dark:hover:text-gray-100 hover:cursor-pointer  ' onClick = {handleOnclick} title='Click to Get in Touch'>
           {`</> & Crafted with 💛 by Shrihari`}             
         </div>
     </div>
