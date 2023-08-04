@@ -1,7 +1,7 @@
 import React from 'react';
 import PlaylistItemFinal from './PlaylistItemFinal';
 import '../App.css';
-import { Bollywood_latest_25,handPickedByHarry,lofi_playlist,travel_playlist} from './ArraysOfPlaylist';
+import { Bollywood_latest_25,handPickedByHarry,lofi_playlist,travel_playlist, trending_instagram_songs} from './ArraysOfPlaylist';
 
 function PlayListSuggestions({successToast,setOpenModalForPlaylist,setUrlArray,urlArray,setSuggestedPlaylistFlag,setSuggestedPlaylistLength}) {
   let dummyVariable= null;
@@ -35,17 +35,13 @@ function PlayListSuggestions({successToast,setOpenModalForPlaylist,setUrlArray,u
      topSinger:'Chillax bedtime',
     gradientClass:'green-gradient',
     playlistSongUrls:[lofi_playlist],
-
-   
     },
     {
       id:5,
-      
       heading: 'Trending & Viral',
       topSinger:'Instagram Reels',
-      gradientClass:'purple-gradient'
-
-      
+      gradientClass:'purple-gradient',
+      playlistSongUrls:[trending_instagram_songs],      
     },
     {
     id:6,
