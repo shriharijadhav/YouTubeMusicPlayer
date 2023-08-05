@@ -1,7 +1,7 @@
 import React from 'react';
 import PlaylistItemFinal from './PlaylistItemFinal';
 import '../App.css';
-import { Bollywood_latest_25,handPickedByHarry,lofi_playlist,travel_playlist, trending_instagram_songs, punjabi_songs, rock_pop_songs, workout_songs} from './ArraysOfPlaylist';
+import { Bollywood_latest_25,handPickedByHarry,lofi_playlist,travel_playlist, trending_instagram_songs, punjabi_songs, rock_pop_songs, workout_songs, old_80s_90s_songs} from './ArraysOfPlaylist';
 
 function PlayListSuggestions({successToast,setOpenModalForPlaylist,setUrlArray,urlArray,setSuggestedPlaylistFlag,setSuggestedPlaylistLength}) {
   let dummyVariable= null;
