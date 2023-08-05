@@ -1,7 +1,7 @@
 import React from 'react';
 import PlaylistItemFinal from './PlaylistItemFinal';
 import '../App.css';
-import { Bollywood_latest_25,handPickedByHarry,lofi_playlist,travel_playlist, trending_instagram_songs} from './ArraysOfPlaylist';
+import { Bollywood_latest_25,handPickedByHarry,lofi_playlist,travel_playlist, trending_instagram_songs, punjabi_songs} from './ArraysOfPlaylist';
 
 function PlayListSuggestions({successToast,setOpenModalForPlaylist,setUrlArray,urlArray,setSuggestedPlaylistFlag,setSuggestedPlaylistLength}) {
   let dummyVariable= null;
@@ -47,7 +47,8 @@ function PlayListSuggestions({successToast,setOpenModalForPlaylist,setUrlArray,u
     id:6,
     heading: 'Punjabi Songs',
     topSinger:'Diljit Dosanjh',
-    gradientClass:'red-gradient'
+    gradientClass:'red-gradient',
+    playlistSongUrls:[punjabi_songs],
     },
     {
       id:7,
