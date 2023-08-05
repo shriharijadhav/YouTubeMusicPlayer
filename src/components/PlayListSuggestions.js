@@ -1,7 +1,7 @@
 import React from 'react';
 import PlaylistItemFinal from './PlaylistItemFinal';
 import '../App.css';
-import { Bollywood_latest_25,handPickedByHarry,lofi_playlist,travel_playlist, trending_instagram_songs, punjabi_songs} from './ArraysOfPlaylist';
+import { Bollywood_latest_25,handPickedByHarry,lofi_playlist,travel_playlist, trending_instagram_songs, punjabi_songs, rock_pop_songs, workout_songs} from './ArraysOfPlaylist';
 
 function PlayListSuggestions({successToast,setOpenModalForPlaylist,setUrlArray,urlArray,setSuggestedPlaylistFlag,setSuggestedPlaylistLength}) {
   let dummyVariable= null;
@@ -54,19 +54,22 @@ function PlayListSuggestions({successToast,setOpenModalForPlaylist,setUrlArray,u
       id:7,
       heading: 'Workout Music',
     topSinger:'The Weekend',
-    gradientClass:'yellow-gradient'
+    gradientClass:'yellow-gradient',
+    playlistSongUrls:[workout_songs]
     },
     {
     id:8,
     heading: 'Rock-Pop music',
     topSinger:'Imagine Dragons',
-    gradientClass:'blue-gradient'
+    gradientClass:'blue-gradient',
+    playlistSongUrls:[rock_pop_songs]
     },
     {
     id:9,
     heading: 'Indian Classical',
     topSinger:'80\'s & 90\'s era',
-    gradientClass:'pink-gradient'
+    gradientClass:'pink-gradient',
+    playlistSongUrls:[old_80s_90s_songs]
     }
   ];
 
