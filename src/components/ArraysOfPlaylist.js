@@ -13,9 +13,10 @@ const punjabi_songs = ['https://www.youtube.com/watch?v=adzPMNPsNn4','https://ww
 
 const workout_songs = ['https://www.youtube.com/watch?v=S73PdjX2X1k','https://www.youtube.com/watch?v=TYqvUaiRhxk',];
 
+const indian_rap_songs = ['https://www.youtube.com/watch?v=eHyl9KG9RWA','https://www.youtube.com/watch?v=O4YEtMj1B50','https://www.youtube.com/watch?v=1eU7FoXh364','https://www.youtube.com/watch?v=ZTZkwKzd7l0','https://www.youtube.com/watch?v=1iinjrFu2T0','https://www.youtube.com/watch?v=GuGYYdwcPYw','https://www.youtube.com/watch?v=rO4DbBjaWJY','https://www.youtube.com/watch?v=7dt9LvdSdIA','https://www.youtube.com/watch?v=9emx__jxcTE','https://www.youtube.com/watch?v=9Q1kbzcCX1M','https://www.youtube.com/watch?v=shSUDi4b2y8','https://www.youtube.com/watch?v=qxsQe2EAk40','https://www.youtube.com/watch?v=7tNPxY_ntEA','https://www.youtube.com/watch?v=w5Aioq5VYF0'];
 
 const rock_pop_songs  = ['https://www.youtube.com/watch?v=MA0aCUxItYA','https://www.youtube.com/watch?v=W0DM5lcj6mw','https://www.youtube.com/watch?v=GtEvysh1654','https://www.youtube.com/watch?v=0R7MASDk1a0','https://www.youtube.com/watch?v=1fOBgosDo7s','https://www.youtube.com/watch?v=rtOvBOTyX00','https://www.youtube.com/watch?v=7KPyunRIjr0','https://www.youtube.com/watch?v=2Vv-BfVoq4g','https://www.youtube.com/watch?v=MBRvsKn7pj4','https://www.youtube.com/watch?v=qX_EG-vEyYs','https://www.youtube.com/watch?v=1__CAdTJ5JU','https://www.youtube.com/watch?v=YaEG2aWJnZ8','https://www.youtube.com/watch?v=sdAOoB5ML0Q','https://www.youtube.com/watch?v=rbl3KkmGUdo','https://www.youtube.com/watch?v=HhjHYkPQ8F0','https://www.youtube.com/watch?v=qdpXxGPqW-Y','https://www.youtube.com/watch?v=zrwTYozyzYA'];
 
 const old_80s_90s_songs = ['https://www.youtube.com/watch?v=yO-DJywU-l4','https://www.youtube.com/watch?v=RjEWtMVibm8','https://www.youtube.com/watch?v=jOlt-GnGeH8','https://www.youtube.com/watch?v=kn8A8QOw9Ek','https://www.youtube.com/watch?v=hrIFb51WVv0'];
 
-export { Bollywood_latest_25, handPickedByHarry, travel_playlist, lofi_playlist, trending_instagram_songs,punjabi_songs,workout_songs, rock_pop_songs, old_80s_90s_songs};
+export { Bollywood_latest_25, handPickedByHarry, travel_playlist, lofi_playlist, trending_instagram_songs,punjabi_songs,workout_songs, rock_pop_songs, old_80s_90s_songs,indian_rap_songs};

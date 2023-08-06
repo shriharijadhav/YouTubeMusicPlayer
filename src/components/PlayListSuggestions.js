@@ -1,7 +1,7 @@
 import React from 'react';
 import PlaylistItemFinal from './PlaylistItemFinal';
 import '../App.css';
-import { Bollywood_latest_25,handPickedByHarry,lofi_playlist,travel_playlist, trending_instagram_songs, punjabi_songs, rock_pop_songs, workout_songs, old_80s_90s_songs} from './ArraysOfPlaylist';
+import { Bollywood_latest_25,handPickedByHarry,lofi_playlist,travel_playlist, trending_instagram_songs, punjabi_songs, rock_pop_songs, workout_songs, old_80s_90s_songs, indian_rap_songs} from './ArraysOfPlaylist';
 
 function PlayListSuggestions({successToast,setOpenModalForPlaylist,setUrlArray,urlArray,setSuggestedPlaylistFlag,setSuggestedPlaylistLength}) {
   let dummyVariable= null;
@@ -58,14 +58,21 @@ function PlayListSuggestions({successToast,setOpenModalForPlaylist,setUrlArray,u
     playlistSongUrls:[workout_songs]
     },
     {
-    id:8,
+      id:8,
+      heading: 'Indian Rap Songs',
+      topSinger:'Divine & Emiway',
+      gradientClass:'green-gradient',
+      playlistSongUrls:[indian_rap_songs]
+      },
+    {
+    id:9,
     heading: 'Rock-Pop music',
     topSinger:'Imagine Dragons',
     gradientClass:'blue-gradient',
     playlistSongUrls:[rock_pop_songs]
     },
     {
-    id:9,
+    id:10,
     heading: 'Indian Classical',
     topSinger:'80\'s & 90\'s era',
     gradientClass:'pink-gradient',
