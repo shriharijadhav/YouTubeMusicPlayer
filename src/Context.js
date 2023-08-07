@@ -14,7 +14,9 @@ function Context({children}) {
 
     let urlIsInvalid = false;
     let playlistFlag = false;
-
+    let singleVideoUrlType = '';
+    let videoIdForSingleVideo = '';
+    
     const [urlArray,setUrlArray] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [receivedPlaylistURL,setReceivedPlaylistURL] = useState(false );
@@ -92,14 +94,59 @@ function Context({children}) {
         }
       }
     const isVideoURL = (url) => {
-        const videoURLPattern = /^(https?:\/\/)?(www\.)?youtube\.com\/watch\?v=([a-zA-Z0-9_-]{11})$/;
-        return videoURLPattern.test(url);
+        // const videoURLPattern = /^(https?:\/\/)?(www\.)?youtube\.com\/watch\?v=([a-zA-Z0-9_-]{11})$/;
+
+        const shortURLPattern = /^https:\/\/youtu\.be\/([a-zA-Z0-9_-]+)$/;
+        const liveURLPattern = /^https:\/\/www\.youtube\.com\/live\/([a-zA-Z0-9_-]+)\?/;
+        const regularURLPattern = /^https:\/\/www\.youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)$/;
+        const mobileURLPattern = /^https:\/\/m\.youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)&feature=youtu\.be$/;
+
+
+        if (shortURLPattern.test(url)) {
+          singleVideoUrlType = 'shortURLPattern';
+
+          return shortURLPattern.test(url);
+        } else if (liveURLPattern.test(url)) {
+          singleVideoUrlType = 'liveURLPattern';
+
+          return liveURLPattern.test(url);
+        } else if (regularURLPattern.test(url)) {
+          singleVideoUrlType = 'regularURLPattern'; 
+          return regularURLPattern.test(url);
+        }else if (mobileURLPattern.test(url)) {
+          singleVideoUrlType = 'mobileURLPattern'; 
+          return mobileURLPattern.test(url);
+        } else {
+           return false;
+        }
+
+        // return videoURLPattern.test(url);
       }
       
     const isPlaylistURL = (url) => {
         const playlistURLPattern = /^(https?:\/\/)?(www\.)?youtube\.com\/playlist\?list=([a-zA-Z0-9_-]+)$/;
         return playlistURLPattern.test(url);
       }
+
+      // functions to get video from URL for single video URL
+      const getVideoIdForShortUrl = (url) => url.split("/").pop();
+
+      const getVideoIdForLiveUrl = (url) => {
+        const videoId = url.split("/").pop();
+        return videoId.split("?")[0];
+      };
+      
+      const getVideoIdForRegularUrl = (url) => {
+        const urlParams = new URLSearchParams(new URL(url).search);
+        return urlParams.get("v");
+      };
+
+      const getVideoIdForMobileUrl = (url) => {
+        const pattern = /^https:\/\/m\.youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)&feature=youtu\.be$/;
+        const match = url.match(pattern);
+        return match ? match[1] : null;
+      };
+
     const enqueue = (event) => {
         event.preventDefault();
         checkYouTubeURL(inputUrl);
@@ -111,7 +158,31 @@ function Context({children}) {
             setReceivedPlaylistURL(true);    
         }else{
         if (inputUrl.trim() !== '') {
-            setUrlArray((prevUrl) => [...prevUrl, inputUrl]);
+
+          // console.log('URL type ', singleVideoUrlType);
+
+          switch (singleVideoUrlType) {
+            case 'shortURLPattern':
+              videoIdForSingleVideo = getVideoIdForShortUrl(inputUrl);
+              break;
+            case 'liveURLPattern':
+              videoIdForSingleVideo = getVideoIdForLiveUrl(inputUrl);
+              break;
+            case 'regularURLPattern':
+              videoIdForSingleVideo = getVideoIdForRegularUrl(inputUrl);
+              break;
+            case 'mobileURLPattern':
+              videoIdForSingleVideo = getVideoIdForMobileUrl(inputUrl);
+              break;
+          
+            default:
+              break;
+          }
+
+          // console.log(videoIdForSingleVideo);
+            const formattedUrlForSingleVideo = `https://www.youtube.com/watch?v=${videoIdForSingleVideo}`;
+            // console.log(formattedUrlForSingleVideo);
+            setUrlArray((prevUrl) => [...prevUrl, formattedUrlForSingleVideo]);
             setInputUrl('');
             }
             successToast('Item has been added to the playlist 🤩');
