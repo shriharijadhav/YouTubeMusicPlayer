@@ -15,20 +15,26 @@ const stepsToUseMusicPlayer = [
       },
      {
         id:1,
-        step:'🍭 Paste it into input field of our Music player & click (+) button once to play music.',
+        step:'🍭 Paste it into input field of our Music player & click (+) button to play music.',
      },
+    //  {
+    //     id:2,
+    //     step:'🍭 Rest assured, You don\'t need to copy-paste URLs for every time.',
+    //     subStep:'( We have added "Save to Local" feature so that you don\'t need to copy and paste video URls for every time you want to play music 😃.)'
+
+    //  },
      {
         id:2,
-        step:'🍭 Rest assured, You don\'t need to copy-paste URLs for every time.',
-        subStep:'( We have added "Save to Local" feature so that you don\'t need to copy and paste video URls for every time you want to play music 😃.)'
+        step:'🍭 Use "Save to Local" once done with adding video URLs.',
+        subStep:'(Playlist should contain at least 10 items in order to save to local.)'
 
      },
      {
         id:3,
-        step:'🍭 Use "Save to Local" once done with creating playlist',
-        subStep:'Save to local or Load from local helps to reduce efforts of copy-pasting URLs for every time.'
+        step:'🍭 Use "Load from Local" option for next time you want to play music',
+        // subStep:'Save to local or Load from local helps to reduce efforts of copy-pasting URLs for every time.'
 
-     },
+     }
      
 ];
 
