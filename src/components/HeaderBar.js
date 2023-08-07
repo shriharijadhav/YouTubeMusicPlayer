@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
-import search from '../images/Search.svg'
-import SearchIcon from './SearchIcon';
+// import search from '../images/Search.svg'
+// import SearchIcon from './SearchIcon';
 import { topLevelContext } from '../Context';
 
 const HeaderBar = () => {
 
  
- const {inputUrl,handleChange, enqueue,setOpenModalForSearch} = useContext(topLevelContext);
+ const {inputUrl,handleChange, enqueue} = useContext(topLevelContext);
 
   return (
     <div className='pt-2 flex justify-center items-center z-10'>

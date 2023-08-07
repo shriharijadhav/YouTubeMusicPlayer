@@ -13,7 +13,7 @@ const Footer = () => {
 
   }
   return (
-    <div className='relative max-w-sm w-full mt-10 pb-10'>
+    <div className='relative max-w-sm w-full mt-8 pb-1'>
    
     <div className='flex flex-col w-full justify-center items-center gap-5'>
         <div className='flex flex-row gap-3'>
