@@ -9,7 +9,7 @@ const HeaderBar = () => {
  const {inputUrl,handleChange, enqueue,setOpenModalForSearch} = useContext(topLevelContext);
 
   return (
-    <div className='pt-2 flex justify-center items-center'>
+    <div className='pt-2 flex justify-center items-center z-10'>
     <button className='p-1 bg-indigo-500  text-indigo-50 rounded-full mx-2 hover:bg-indigo-600 transform transition-all ease-in-out' >
      <SearchIcon imagePath={search} title={'Search Videos'} setOpenModalForSearch={setOpenModalForSearch} />
     </button>
