@@ -287,7 +287,7 @@ function Context({children}) {
          const getPreviousItem = () => {
             if (isEmpty() || currentIndex === 0) {
                 // console.log('No previous item. ');
-              warningToast('No previous item in the playlist')
+              warningToast('No previous item in the playlist 😐')
               return null;
             }
             else{
