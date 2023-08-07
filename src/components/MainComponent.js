@@ -396,8 +396,8 @@ const handleModalOpenForPlaylist = () => {
         
         ) : (
         <div className='w-full bg-gray-300 dark:bg-gray-700 max-w-maxContent  pb-10 -z-30'>
-       <div className='flex flex-col gap-5 justify-center items-center    pt-28 h-auto relative z-10 ' >
-       <div className='relative max-w-sm w-full'>
+       <div className='flex flex-col gap-5 justify-center items-center pt-28 h-auto relative z-10 ' >
+       <div className='relative max-w-sm w-full '>
         <HeaderBar />
        </div>
   
