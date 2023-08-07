@@ -100,6 +100,7 @@ function Context({children}) {
         const liveURLPattern = /^https:\/\/www\.youtube\.com\/live\/([a-zA-Z0-9_-]+)\?/;
         const regularURLPattern = /^https:\/\/www\.youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)$/;
         const mobileURLPattern = /^https:\/\/m\.youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)&feature=youtu\.be$/;
+        const mobileURLPatternTwo = /^https:\/\/m\.youtube\.com\/watch\?v=[a-zA-Z0-9_-]{11}$/;
 
 
         if (shortURLPattern.test(url)) {
@@ -116,6 +117,9 @@ function Context({children}) {
         }else if (mobileURLPattern.test(url)) {
           singleVideoUrlType = 'mobileURLPattern'; 
           return mobileURLPattern.test(url);
+        }else if (mobileURLPatternTwo.test(url)) {
+          singleVideoUrlType = 'mobileURLPatternTwo'; 
+          return mobileURLPatternTwo.test(url);
         } else {
            return false;
         }
@@ -147,6 +151,13 @@ function Context({children}) {
         return match ? match[1] : null;
       };
 
+      const getVideoIdForMobileUrlTwo = url => {
+        const parts = url.split('?v=');
+        if (parts.length === 2) {
+          return parts[1];
+        }
+        return null;
+      };
     const enqueue = (event) => {
         event.preventDefault();
         checkYouTubeURL(inputUrl);
@@ -174,6 +185,9 @@ function Context({children}) {
             case 'mobileURLPattern':
               videoIdForSingleVideo = getVideoIdForMobileUrl(inputUrl);
               break;
+              case 'mobileURLPatternTwo':
+                videoIdForSingleVideo = getVideoIdForMobileUrlTwo(inputUrl);
+                break;
           
             default:
               break;
