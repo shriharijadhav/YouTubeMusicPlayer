@@ -10,9 +10,7 @@ const HeaderBar = () => {
 
   return (
     <div className='pt-2 flex justify-center items-center z-10'>
-    <button className='p-1 bg-indigo-500  text-indigo-50 rounded-full mx-2 hover:bg-indigo-600 transform transition-all ease-in-out' >
-     <SearchIcon imagePath={search} title={'Search Videos'} setOpenModalForSearch={setOpenModalForSearch} />
-    </button>
+   
         <form onSubmit={enqueue}  className='flex'>
             <input type='text' name='' id='searchbar' required className='relative shadow-md h-12 bg-grey-50 w-72 z-10 rounded-l-xl pl-5 pr-2 bg-gray-100 dark:dark:bg-gray-900   outline-none  text-gray-900 dark:text-gray-300' placeholder='Enter Youtube Video/Playlist URL'
             value={inputUrl} onChange={handleChange} />

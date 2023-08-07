@@ -11,9 +11,8 @@ function ModalForHelp() {
 const stepsToUseMusicPlayer = [
     {
         id:0,
-        step:'🍭 Copy link (URL) for any Youtube video or playlist  that you like from browser. ',
-        subStep:'(Currently, we do not support the video links from Youtube Mobile app 🙃)'
-     },
+        step:'🍭 Copy link (URL) for any Youtube video or playlist  that you like from browser or YouTube mobile app.',
+      },
      {
         id:1,
         step:'🍭 Paste it into input field of our Music player & click (+) button once to play music.',
@@ -26,8 +25,8 @@ const stepsToUseMusicPlayer = [
      },
      {
         id:3,
-        step:'🍭 Currently supported URL formats',
-        subStep:'( https://www.youtube.com/watch?v=xyz OR https://www.youtube.com/playlist?list=xyz)'
+        step:'🍭 Use "Save to Local" once done with creating playlist',
+        subStep:'Save to local or Load from local helps to reduce efforts of copy-pasting URLs for every time.'
 
      },
      
