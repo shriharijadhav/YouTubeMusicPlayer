@@ -101,6 +101,8 @@ function Context({children}) {
         const regularURLPattern = /^https:\/\/www\.youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)$/;
         const mobileURLPattern = /^https:\/\/m\.youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)&feature=youtu\.be$/;
         const mobileURLPatternTwo = /^https:\/\/m\.youtube\.com\/watch\?v=[a-zA-Z0-9_-]{11}$/;
+        const addonURLPattern = /^https:\/\/youtu\.be\/[A-Za-z0-9_-]+(\?.*)?$/;
+        const addonURLPatternTwo =/https:\/\/m\.youtube\.com\/watch\?si=[A-Za-z0-9_-]+&v=[A-Za-z0-9_-]+&feature=youtu\.be/;
 
 
         if (shortURLPattern.test(url)) {
@@ -120,6 +122,12 @@ function Context({children}) {
         }else if (mobileURLPatternTwo.test(url)) {
           singleVideoUrlType = 'mobileURLPatternTwo'; 
           return mobileURLPatternTwo.test(url);
+        }else if (addonURLPattern.test(url)) {
+          singleVideoUrlType = 'addonURLPattern'; 
+          return addonURLPattern.test(url);
+        }else if (addonURLPatternTwo.test(url)) {
+          singleVideoUrlType = 'addonURLPatternTwo'; 
+          return addonURLPatternTwo.test(url);
         } else {
            return false;
         }
@@ -158,6 +166,17 @@ function Context({children}) {
         }
         return null;
       };
+
+      const getVideoIdForAddonUrl = (url) => {
+        const match = url.match(/https:\/\/youtu\.be\/([A-Za-z0-9_-]+)/);
+        return match ? match[1] : null;
+      };
+
+      const getVideoIdForAddonUrlTwo = (url) => {
+        const match = url.match(/(?:\?|&)v=([^&]+)/);
+        return match ? match[1] : null;
+      };
+
     const enqueue = (event) => {
         event.preventDefault();
         checkYouTubeURL(inputUrl);
@@ -188,6 +207,14 @@ function Context({children}) {
               case 'mobileURLPatternTwo':
                 videoIdForSingleVideo = getVideoIdForMobileUrlTwo(inputUrl);
                 break;
+            case 'addonURLPattern':
+                videoIdForSingleVideo = getVideoIdForAddonUrl(inputUrl);
+                // console.log(videoIdForSingleVideo);
+              break;
+              case 'addonURLPatternTwo':
+                videoIdForSingleVideo = getVideoIdForAddonUrlTwo(inputUrl);
+                // console.log(videoIdForSingleVideo);
+              break;
           
             default:
               break;
@@ -406,6 +433,7 @@ function Context({children}) {
           
         }
       
+      const [modalForPageRefresh,setModalForPageRefresh] = useState(false);
     const contextValue ={
         urlArray:urlArray,
         setUrlArray:setUrlArray,
@@ -479,7 +507,8 @@ function Context({children}) {
         getNextUrlData:getNextUrlData,
         saveToLocal:saveToLocal,
         handleLocalStorageFetch:handleLocalStorageFetch,
-
+        modalForPageRefresh:modalForPageRefresh,
+        setModalForPageRefresh:setModalForPageRefresh,
 
     }
 

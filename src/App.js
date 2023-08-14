@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 
 //  import 'react-toastify/dist/ReactToastify.css';
@@ -7,12 +7,17 @@ import React, { useEffect, useState } from 'react';
  
 import MainComponent from './components/MainComponent';
 import LoaderForOfflineUser from './components/LoaderForOfflineUser';
-// import OnlineStatusChecker from './OnlineStatusChecker';
+ import { topLevelContext } from './Context';
+ import ModalForPageRefresh from './components/ModalForPageRefresh';
+ // import OnlineStatusChecker from './OnlineStatusChecker';
 
  
 
 function App() {
   const [hasInternet, setHasInternet] = useState(true);
+
+  const {urlArray,setModalForPageRefresh,modalForPageRefresh} = useContext(topLevelContext);
+ 
 
   useEffect(() => {
     // Function to check internet connectivity
@@ -32,8 +37,31 @@ function App() {
     const interval = setInterval(checkInternetConnectivity, 5000);
 
     // Clean up interval on component unmount
-    return () => clearInterval(interval);
-  }, []);
+
+    const handleBeforeUnload = (e) => {
+      
+      if(urlArray.length === 0) {
+        // console.log('if blok')
+        // do nothing and refresh the page
+      }
+      else{
+    //  console.log(urlArray.length)
+    e.preventDefault();
+      e.returnValue = '';
+      // console.log('inside function');
+      setModalForPageRefresh(true);
+
+       }
+    };
+   window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () =>{
+      clearInterval(interval);
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+
+ 
+    } 
+  }, [urlArray.length]);
 
   return (
     <div>
@@ -44,10 +72,9 @@ function App() {
       <LoaderForOfflineUser/>
     )}
         
+    {modalForPageRefresh?(<ModalForPageRefresh/>):(<></>)}
 
-   
-  </div>
-    
+     </div>
     
      
   );
