@@ -39,7 +39,7 @@ label .input:checked + .toggle-wrapper {
 }
 label .input:checked + .toggle-wrapper > .selector {
   left: calc(100% - 50px);
-  background-color: #ee5f39;
+  background-color: #FC9601;
   box-shadow: 0 8px 14px 0 rgba(230, 3, 3, 0.12);
 
 }
