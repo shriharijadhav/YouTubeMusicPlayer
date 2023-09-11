@@ -63,7 +63,7 @@ const AudioPlayer = () => {
       return     <audio ref={audioRef} src={''}    controlsList='nodownload' className='w-full audioBar'  controls autoPlay={true} />
 
     } else {
-      return     <audio ref={audioRef} src={videoDetails.audioUrl}    controlsList='nodownload' className='w-full audioBar'  controls autoPlay={true} />
+      return     <audio ref={audioRef} src={videoDetails.audioUrl}    controlsList='' className='w-full audioBar'  controls autoPlay={true} />
     }
   } 
 
