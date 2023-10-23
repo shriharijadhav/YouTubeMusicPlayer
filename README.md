@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+<div align="center">
+      <h1> <img src="https://youtubemusicplayer.vercel.app/" width="80px"><br/>YouTube Music Player</h1>
+     </div>
+<p align="center"> <a href="http://shriharijadhav.vercel.app/" target="_blank"><img alt="" src="https://img.shields.io/badge/Website-EA4C89?style=normal&logo=dribbble&logoColor=white" style="vertical-align:center" /></a> <a href="https://twitter.com/i_amHariii" target="_blank"><img alt="" src="https://img.shields.io/badge/Twitter-1DA1F2?style=normal&logo=twitter&logoColor=white" style="vertical-align:center" /></a> <a href="https://www.linkedin.com/in/shriharijadhav126/}" target="_blank"><img alt="" src="https://img.shields.io/badge/LinkedIn-0077B5?style=normal&logo=linkedin&logoColor=white" style="vertical-align:center" /></a> </p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Description
+YouTube Music Player- Your Ultimate Ad-Free Music Streaming Experience, absolutely free!
 
-## Available Scripts
+# Features
+🎶 Enjoy Ad-Free Music
+Listen to your favorite tracks without any interruptions from ads, allowing you to fully immerse yourself in the music.
+✨ Create Personalized Playlists
+Curate your own playlist, ensuring that you have a collection of music that perfectly matches your taste.
+⚡ Merge an infinite number of playlists effortlessly
+With our app's innovative playlist merging feature, the possibilities are limitless, allowing you to create harmonious medleys and curated collections that resonate with your soul.
+🌟 100% Free
+Say goodbye to hidden charges and experience premium services, absolutely free!
+🔄 Save or Load Playlist
+Save your carefully curated collections or load previously saved playlists effortlessly to/from, ensuring your favorite tracks are always within reach.
+🌠 Dark Mode & Light Mode
+Switch between dark mode and light mode to customize the player's appearance based on your preference, making it easy on your eyes at any time of the day.
+🚀 Save upto 95% data
+Experience the true potential of our app and enjoy streaming audio-only for your favorite YouTube videos, saving you a remarkable 95% in data usage.
+# Screenshots
+ <img src="https://asset.cloudinary.com/doy96xihu/b61f5ff298bf612e5b00cefe18970204"> <img src="https://asset.cloudinary.com/doy96xihu/da6d45d59e8139b6ad3dbabf45532fe6"> <img src="https://asset.cloudinary.com/doy96xihu/03e57ba61a7562624ad2dc2dc61ea85e"> <img src="https://asset.cloudinary.com/doy96xihu/0b141832899147e73ba393f563f3b60b">
+# Tech Used
+ ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white) ![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white) ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB) ![NPM](https://img.shields.io/badge/NPM-%23000000.svg?style=for-the-badge&logo=npm&logoColor=white) ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white) ![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white) ![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)
+      
+# YT Music Player - Your Ultimate Ad-Free Music Streaming Experience, absolutely free!!
 
-In the project directory, you can run:
+### How to use this Music Player?
 
-### `npm start`
+🍭 Copy link (URL) for any Youtube video or playlist that you like from browser or YouTube mobile app.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+🍭 Paste it into input field of our Music player & click (+) button to play music.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+🍭 Use "Save to Local" once done with adding video URLs.
 
-### `npm test`
+🍭 Use "Load from Local" option for next time you want to play music
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# [YouTube Music Player - Click Here](https://youtubemusicplayer.vercel.app/)
+  
+![](https://img.shields.io/badge/IMAGES-4298B8.svg?style=for-the-badge&logoColor=white)
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Why to use this Music Player?
+#### 🎶 Enjoy Ad-Free Music
+ Listen to your favorite tracks without any interruptions from ads, allowing you to fully immerse yourself in the music.
+#### ✨ Create Personalized Playlists
+Curate your own playlist, ensuring that you have a collection of music that perfectly matches your taste.
+#### ⚡ Merge an infinite number of playlists effortlessly
+With our app's innovative playlist merging feature, the possibilities are limitless, allowing you to create harmonious medleys and curated collections that resonate with your soul.
+#### 🌟 100% Free
+Say goodbye to hidden charges and experience premium services, absolutely free!
+#### 🔄 Save or Load Playlist
+Save your carefully curated collections or load previously saved playlists effortlessly to/from, ensuring your favorite tracks are always within reach.
+#### 🌠 Dark Mode & Light Mode
+Switch between dark mode and light mode to customize the player's appearance based on your preference, making it easy on your eyes at any time of the day.
+#### 🚀 Save upto 95% data
+Experience the true potential of our app and enjoy streaming audio-only for your favorite YouTube videos, saving you a remarkable 95% in data usage.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### 🎉 Join us on this musical journey and let the rhythms of life elevate your soul. Experience the power of music, one click at a time! 🎵 ❤️
+      
+<!-- </> with 💛 by readMD (https://readmd.itsvg.in) -->
+    
