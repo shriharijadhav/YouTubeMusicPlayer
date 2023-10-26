@@ -126,7 +126,7 @@ app.get('/checkVideoType', (req, res) => {
 // Set up YouTube Data API client
 const youtube = google.youtube({
   version: 'v3',
-  auth: 'AIzaSyD7CwgW2I4H3VijQDmf7jcPt2CfUvRtIFM', // Replace with your YouTube Data API key
+  auth: 'AIzaSyCVred84qZKRIVAZhuZmZLVm9fUbYIUuyY', // Replace with your YouTube Data API key
 });
 
 
