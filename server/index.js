@@ -19,6 +19,7 @@ app.get('/getAudioAndThumbnail', async (req, res) => {
 
     // Get video info
     const info = await ytdl.getInfo(videoUrl);
+    console.log(info);
 
      // Get video ID
      const videoId = info.videoDetails.videoId;
