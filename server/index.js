@@ -1,6 +1,6 @@
 const express = require('express');
 const ytdl = require('ytdl-core');
-const puppeteer = require('puppeteer');
+// const puppeteer = require('puppeteer');
 
 const ytpl = require('ytpl');
 const { google } = require('googleapis');
@@ -10,8 +10,7 @@ const app = express();
 const port = process.env.PORT || 4000;
 app.use(cors());
 
-/*// -------------------------------------------commenting old logic which uses ytdl package --------------------
-
+ 
 app.get('/getAudioAndThumbnail', async (req, res) => {
   const videoUrl = req.query.videoUrl;
   console.log(videoUrl);
@@ -62,9 +61,6 @@ app.get('/getAudioAndThumbnail', async (req, res) => {
 
 
   /*
-  
-  
-  */
   const extractYouTubeVideoId = (url) => {
     // Regular expression to match and capture the video ID
     const videoIdRegex = /(?:\?v=|\/embed\/|\/v\/|\/watch\?v=|youtu\.be\/|\/embed\/videoseries\?list=)([\w-]{11})/;
@@ -123,6 +119,9 @@ app.get('/getAudioAndThumbnail', async (req, res) => {
 
  
 });
+  
+  */
+  
 
 //---------------------------------------------------for playlists------------------------------------------------
 
