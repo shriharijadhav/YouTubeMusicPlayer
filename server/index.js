@@ -56,6 +56,15 @@ app.get('/getAudioAndThumbnail', async (req, res) => {
   }
 });
   // -------------------------------------------commenting old logic which uses ytdl package --------------------*/
+
+
+
+
+
+  /*
+  
+  
+  */
   const extractYouTubeVideoId = (url) => {
     // Regular expression to match and capture the video ID
     const videoIdRegex = /(?:\?v=|\/embed\/|\/v\/|\/watch\?v=|youtu\.be\/|\/embed\/videoseries\?list=)([\w-]{11})/;
