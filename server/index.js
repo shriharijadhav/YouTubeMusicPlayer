@@ -13,7 +13,7 @@ app.use(cors());
  
 app.get('/getAudioAndThumbnail', async (req, res) => {
   const videoUrl = req.query.videoUrl;
-  console.log(videoUrl);
+  // console.log(videoUrl);
  try {
     // Validate if the provided URL is a valid YouTube video URL
     if (!ytdl.validateURL(videoUrl)) {
@@ -198,7 +198,7 @@ app.get('/checkVideoType', (req, res) => {
 // Set up YouTube Data API client
 const youtube = google.youtube({
   version: 'v3',
-  auth: 'AIzaSyCVred84qZKRIVAZhuZmZLVm9fUbYIUuyY', // Replace with your YouTube Data API key
+  auth: 'AIzaSyBP9h60FzUmfjVXlaNiMiR5lBGh0tHbndU', // Replace with your YouTube Data API key
 });
 
 // -------------------------------------------commenting search feature -------------------
