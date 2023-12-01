@@ -405,7 +405,7 @@ const handleModalOpenForPlaylist = () => {
         <Loader/>
         
         ) : (
-        <div className='w-full bg-gray-300 dark:bg-gray-700 max-w-maxContent  pb-10 -z-30'>
+        <div className='w-full bg-gray-300 dark:bg-gray-700 max-w-maxContent pt-5 pb-16  min-h-screen   -z-30'>
         
        <div className='flex flex-col gap-5 justify-center items-center    pt-24 h-auto relative z-10 ' >
        
