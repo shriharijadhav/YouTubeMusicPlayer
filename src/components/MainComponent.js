@@ -1,9 +1,10 @@
- import '../App.css';
+import '../App.css';
 import React, { useContext, useEffect } from 'react';
 import infoImage from '../images/info.svg';
+import heartIcon from '../images/logo/heart.svg';
 import BackgroundCard from './BackgroundCard';
 import ImageCard from './ImageCard';
-
+ 
 
 import Footer from './Footer';
  import HeaderBar from './HeaderBar';
@@ -19,9 +20,11 @@ import Modal from './Modal';
 import ModalForPlaylist from './ModalForPlaylist';
 import ModalForHelp from './ModalForHelp';
 import ModalForSearch from './ModalForSearch';
-import { API_FOR_FIRST_URL_DATA, API_FOR_searchVideos, GET_PLAYLIST_VIDEOS } from '../services/apis';
+import { API_FOR_FIRST_URL_DATA, API_FOR_searchVideos, GET_PLAYLIST_VIDEOS,  GET_TOTAL_LIKES_COUNT, GET_TOTAL_SONGS_PLAYED } from '../services/apis';
 import { apiConnector } from '../services/apiConnector';
 import { topLevelContext } from '../Context';
+
+import Likes from './Likes';
 const MainComponent = () => {
 
   const {theme} = useContext(topLevelContext);
@@ -53,12 +56,14 @@ const MainComponent = () => {
   const {serviceIsDownTodayFlag,setServiceIsDownTodayFlag} = useContext(topLevelContext);
   const {successToast,warningToast,errorToast} = useContext(topLevelContext);
    
- 
- 
-
-  
-
-
+  const {openModalForLikes,setOpenModalForLikes} = useContext(topLevelContext);
+  const {stats,setStats} = useContext(topLevelContext);
+  const {isLoadingForStats,setIsLoadingForStats} = useContext(topLevelContext);
+  const {isLikeBtnClicked,setIsLikeBtnClicked} = useContext(topLevelContext);
+  const {setTotalLikesCount} = useContext(topLevelContext);
+  const {totalSongsPlayed,setTotalSongsPlayed} = useContext(topLevelContext);
+  const {totalLikesCount} = useContext(topLevelContext);
+  const {subsequentTotalSongsPlayedCount,setSubsequentTotalSongsPlayedCount} = useContext(topLevelContext);
 
 const handleModalOpenForPlaylist = () => {
      setOpenModalForPlaylist(true);
@@ -85,6 +90,9 @@ const handleModalOpenForPlaylist = () => {
       document.documentElement.classList.remove('dark');
   
     }
+
+   
+
   
     const getFirstUrlData = async () => {
       
@@ -112,8 +120,10 @@ const handleModalOpenForPlaylist = () => {
     
     // console.log(data);
     setVideoDetails(data);
+    setStats(data.stats);
+    // console.log(data);
     SetFlagForFirstSingleVideoFetch(prev=>prev+1);
-  
+     
          
         }
         }catch (error) {
@@ -386,7 +396,7 @@ const handleModalOpenForPlaylist = () => {
   }
   //  youtube search code ends  here
 
-  },[theme,urlArray,currentIndex,dataFetchedForFirstURL,urlArray.length,localFetchOne,localFetchTwo,playlistFromLocal,receivedPlaylistURL,isPlaylistLoadedForFirstTime,flagForFirstSingleVideoFetch,inputUrl,tempPlaylistLength,suggestedPlaylistFlag,suggestedPlaylistLength,youtubeSearchFlag,youtubeSearchQuery,isLoadingForSearch,serviceIsDownTodayFlag]);
+  },[totalSongsPlayed,totalLikesCount,isLikeBtnClicked,theme,urlArray,currentIndex,dataFetchedForFirstURL,urlArray.length,localFetchOne,localFetchTwo,playlistFromLocal,receivedPlaylistURL,isPlaylistLoadedForFirstTime,flagForFirstSingleVideoFetch,inputUrl,tempPlaylistLength,suggestedPlaylistFlag,suggestedPlaylistLength,youtubeSearchFlag,youtubeSearchQuery,isLoadingForSearch,serviceIsDownTodayFlag]);
   
   
     return (
@@ -396,8 +406,10 @@ const handleModalOpenForPlaylist = () => {
         
         ) : (
         <div className='w-full bg-gray-300 dark:bg-gray-700 max-w-maxContent  pb-10 -z-30'>
-       <div className='flex flex-col gap-5 justify-center items-center pt-28 h-auto relative z-10 ' >
-       <div className='relative max-w-sm w-full '>
+        
+       <div className='flex flex-col gap-5 justify-center items-center    pt-24 h-auto relative z-10 ' >
+       
+       <div className='relative max-w-sm w-full'>
         <HeaderBar />
        </div>
   
@@ -419,12 +431,21 @@ const handleModalOpenForPlaylist = () => {
       </div>
   
       <Footer/>
-
-      <div className='fixed top-4 right-4'>
+        
+       <div className='fixed top-4 right-4'>
         <button className='bg-indigo-400 hover:bg-indigo-600 text-white font-bold py-2 px-4 gap-1 rounded-full shadow-md flex flex-row justify-center items-center' title='Help'
         onClick={()=>setOpenModalForHelp(true)}>
           <div>Help</div>
           <img src={infoImage} alt='Help' />
+        </button>
+       
+      </div>
+
+      <div className='fixed top-20 right-4'>
+        <button className='bg-indigo-400 hover:bg-indigo-600 text-white font-bold py-2 px-4 gap-1 rounded-full shadow-md flex flex-row justify-center items-center' title='Help'
+        onClick={()=>setOpenModalForLikes(true)}>
+          <div>Admire</div>
+          <img src={heartIcon} alt='Help' width={20} height={20} />
         </button>
        
       </div>
@@ -455,6 +476,12 @@ const handleModalOpenForPlaylist = () => {
      {
       openModalForSearch?
       (<ModalForSearch />)
+      :(<div></div>)
+     }
+
+     {
+      openModalForLikes?
+      (<Likes />)
       :(<div></div>)
      }
    </div>

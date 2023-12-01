@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { createContext } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 import {  toast } from 'react-toastify';
-import { API_FOR_FIRST_URL_DATA} from './services/apis';
+import { API_FOR_FIRST_URL_DATA, API_TO_INCREASE_LIKE_COUNT, GET_STATS} from './services/apis';
 import { apiConnector } from './services/apiConnector';
 
 
@@ -14,9 +14,7 @@ function Context({children}) {
 
     let urlIsInvalid = false;
     let playlistFlag = false;
-    let singleVideoUrlType = '';
-    let videoIdForSingleVideo = '';
-    
+
     const [urlArray,setUrlArray] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [receivedPlaylistURL,setReceivedPlaylistURL] = useState(false );
@@ -46,6 +44,27 @@ function Context({children}) {
      const [dataFetchedSuccess,setDataFetchedSuccess] = useState(false);
      const [searchDataAfterFetch,setSearchDataAfterFetch] = useState([ ]);
      const [serviceIsDownTodayFlag,setServiceIsDownTodayFlag] = useState(false);
+
+     const [modalForPageRefresh,setModalForPageRefresh] = useState(false);
+     const [openModalForLikes,setOpenModalForLikes] = useState(false);
+
+
+     const [isLoadingForStats, setIsLoadingForStats] = useState(false);
+     const[isLikeBtnClicked,setIsLikeBtnClicked] = useState(false);
+     const[subsequentTotalSongsPlayedCount,setSubsequentTotalSongsPlayed] = useState(false);
+
+    const [totalSongsPlayed, setTotalSongsPlayed] = useState([]); 
+    const [totalLikesCount, setTotalLikesCount] = useState([]); 
+     const [stats,setStats] = useState({
+      totalSongsPlayed:0,
+      totalLikesCount:0,
+  });
+
+
+
+
+
+
 
 
     const toggleTheme =() => {
@@ -94,89 +113,14 @@ function Context({children}) {
         }
       }
     const isVideoURL = (url) => {
-        // const videoURLPattern = /^(https?:\/\/)?(www\.)?youtube\.com\/watch\?v=([a-zA-Z0-9_-]{11})$/;
-
-        const shortURLPattern = /^https:\/\/youtu\.be\/([a-zA-Z0-9_-]+)$/;
-        const liveURLPattern = /^https:\/\/www\.youtube\.com\/live\/([a-zA-Z0-9_-]+)\?/;
-        const regularURLPattern = /^https:\/\/www\.youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)$/;
-        const mobileURLPattern = /^https:\/\/m\.youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)&feature=youtu\.be$/;
-        const mobileURLPatternTwo = /^https:\/\/m\.youtube\.com\/watch\?v=[a-zA-Z0-9_-]{11}$/;
-        const addonURLPattern = /^https:\/\/youtu\.be\/[A-Za-z0-9_-]+(\?.*)?$/;
-        const addonURLPatternTwo =/https:\/\/m\.youtube\.com\/watch\?si=[A-Za-z0-9_-]+&v=[A-Za-z0-9_-]+&feature=youtu\.be/;
-
-
-        if (shortURLPattern.test(url)) {
-          singleVideoUrlType = 'shortURLPattern';
-
-          return shortURLPattern.test(url);
-        } else if (liveURLPattern.test(url)) {
-          singleVideoUrlType = 'liveURLPattern';
-
-          return liveURLPattern.test(url);
-        } else if (regularURLPattern.test(url)) {
-          singleVideoUrlType = 'regularURLPattern'; 
-          return regularURLPattern.test(url);
-        }else if (mobileURLPattern.test(url)) {
-          singleVideoUrlType = 'mobileURLPattern'; 
-          return mobileURLPattern.test(url);
-        }else if (mobileURLPatternTwo.test(url)) {
-          singleVideoUrlType = 'mobileURLPatternTwo'; 
-          return mobileURLPatternTwo.test(url);
-        }else if (addonURLPattern.test(url)) {
-          singleVideoUrlType = 'addonURLPattern'; 
-          return addonURLPattern.test(url);
-        }else if (addonURLPatternTwo.test(url)) {
-          singleVideoUrlType = 'addonURLPatternTwo'; 
-          return addonURLPatternTwo.test(url);
-        } else {
-           return false;
-        }
-
-        // return videoURLPattern.test(url);
+        const videoURLPattern = /^(https?:\/\/)?(www\.)?youtube\.com\/watch\?v=([a-zA-Z0-9_-]{11})$/;
+        return videoURLPattern.test(url);
       }
       
     const isPlaylistURL = (url) => {
         const playlistURLPattern = /^(https?:\/\/)?(www\.)?youtube\.com\/playlist\?list=([a-zA-Z0-9_-]+)$/;
         return playlistURLPattern.test(url);
       }
-
-      // functions to get video from URL for single video URL
-      const getVideoIdForShortUrl = (url) => url.split("/").pop();
-
-      const getVideoIdForLiveUrl = (url) => {
-        const videoId = url.split("/").pop();
-        return videoId.split("?")[0];
-      };
-      
-      const getVideoIdForRegularUrl = (url) => {
-        const urlParams = new URLSearchParams(new URL(url).search);
-        return urlParams.get("v");
-      };
-
-      const getVideoIdForMobileUrl = (url) => {
-        const pattern = /^https:\/\/m\.youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)&feature=youtu\.be$/;
-        const match = url.match(pattern);
-        return match ? match[1] : null;
-      };
-
-      const getVideoIdForMobileUrlTwo = url => {
-        const parts = url.split('?v=');
-        if (parts.length === 2) {
-          return parts[1];
-        }
-        return null;
-      };
-
-      const getVideoIdForAddonUrl = (url) => {
-        const match = url.match(/https:\/\/youtu\.be\/([A-Za-z0-9_-]+)/);
-        return match ? match[1] : null;
-      };
-
-      const getVideoIdForAddonUrlTwo = (url) => {
-        const match = url.match(/(?:\?|&)v=([^&]+)/);
-        return match ? match[1] : null;
-      };
-
     const enqueue = (event) => {
         event.preventDefault();
         checkYouTubeURL(inputUrl);
@@ -188,42 +132,7 @@ function Context({children}) {
             setReceivedPlaylistURL(true);    
         }else{
         if (inputUrl.trim() !== '') {
-
-          // console.log('URL type ', singleVideoUrlType);
-
-          switch (singleVideoUrlType) {
-            case 'shortURLPattern':
-              videoIdForSingleVideo = getVideoIdForShortUrl(inputUrl);
-              break;
-            case 'liveURLPattern':
-              videoIdForSingleVideo = getVideoIdForLiveUrl(inputUrl);
-              break;
-            case 'regularURLPattern':
-              videoIdForSingleVideo = getVideoIdForRegularUrl(inputUrl);
-              break;
-            case 'mobileURLPattern':
-              videoIdForSingleVideo = getVideoIdForMobileUrl(inputUrl);
-              break;
-              case 'mobileURLPatternTwo':
-                videoIdForSingleVideo = getVideoIdForMobileUrlTwo(inputUrl);
-                break;
-            case 'addonURLPattern':
-                videoIdForSingleVideo = getVideoIdForAddonUrl(inputUrl);
-                // console.log(videoIdForSingleVideo);
-              break;
-              case 'addonURLPatternTwo':
-                videoIdForSingleVideo = getVideoIdForAddonUrlTwo(inputUrl);
-                // console.log(videoIdForSingleVideo);
-              break;
-          
-            default:
-              break;
-          }
-
-          // console.log(videoIdForSingleVideo);
-            const formattedUrlForSingleVideo = `https://www.youtube.com/watch?v=${videoIdForSingleVideo}`;
-            // console.log(formattedUrlForSingleVideo);
-            setUrlArray((prevUrl) => [...prevUrl, formattedUrlForSingleVideo]);
+            setUrlArray((prevUrl) => [...prevUrl, inputUrl]);
             setInputUrl('');
             }
             successToast('Item has been added to the playlist 🤩');
@@ -328,7 +237,7 @@ function Context({children}) {
          const getPreviousItem = () => {
             if (isEmpty() || currentIndex === 0) {
                 // console.log('No previous item. ');
-              warningToast('No previous item in the playlist 😐')
+              warningToast('No previous item in the playlist')
               return null;
             }
             else{
@@ -432,8 +341,23 @@ function Context({children}) {
       
           
         }
-      
-      const [modalForPageRefresh,setModalForPageRefresh] = useState(false);
+
+        // increase likes count
+        const increaseLikesCount = async () => {
+          try {
+            const response = await apiConnector('get', API_TO_INCREASE_LIKE_COUNT.formattedUrl, null,null, null);
+          const data = response.data;
+          setStats(data.stats);
+
+          } catch (error) {
+            
+          }
+
+        }
+
+        // get stats
+       
+
     const contextValue ={
         urlArray:urlArray,
         setUrlArray:setUrlArray,
@@ -507,8 +431,25 @@ function Context({children}) {
         getNextUrlData:getNextUrlData,
         saveToLocal:saveToLocal,
         handleLocalStorageFetch:handleLocalStorageFetch,
+
+        openModalForLikes:openModalForLikes,
+        setOpenModalForLikes:setOpenModalForLikes,
+        totalSongsPlayed:totalSongsPlayed,
+        setTotalSongsPlayed:setTotalSongsPlayed,
+        totalLikesCount:totalLikesCount,
+        setTotalLikesCount:setTotalLikesCount,
+
+         
+        increaseLikesCount:increaseLikesCount,
         modalForPageRefresh:modalForPageRefresh,
         setModalForPageRefresh:setModalForPageRefresh,
+        isLoadingForStats:isLoadingForStats,
+        setIsLoadingForStats:setIsLoadingForStats,
+        isLikeBtnClicked:isLikeBtnClicked,
+        setIsLikeBtnClicked:setIsLikeBtnClicked,
+ 
+
+
 
     }
 
