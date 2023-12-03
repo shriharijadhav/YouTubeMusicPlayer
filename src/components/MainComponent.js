@@ -396,7 +396,7 @@ const handleModalOpenForPlaylist = () => {
   }
   //  youtube search code ends  here
 
-  },[totalSongsPlayed,totalLikesCount,isLikeBtnClicked,theme,urlArray,currentIndex,dataFetchedForFirstURL,urlArray.length,localFetchOne,localFetchTwo,playlistFromLocal,receivedPlaylistURL,isPlaylistLoadedForFirstTime,flagForFirstSingleVideoFetch,inputUrl,tempPlaylistLength,suggestedPlaylistFlag,suggestedPlaylistLength,youtubeSearchFlag,youtubeSearchQuery,isLoadingForSearch,serviceIsDownTodayFlag]);
+  },[theme,urlArray,currentIndex,dataFetchedForFirstURL,urlArray.length,localFetchOne,localFetchTwo,playlistFromLocal,receivedPlaylistURL,isPlaylistLoadedForFirstTime,flagForFirstSingleVideoFetch,inputUrl,tempPlaylistLength,suggestedPlaylistFlag,suggestedPlaylistLength,youtubeSearchFlag,youtubeSearchQuery,isLoadingForSearch,serviceIsDownTodayFlag]);
   
   
     return (

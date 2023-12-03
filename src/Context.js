@@ -14,6 +14,8 @@ function Context({children}) {
 
     let urlIsInvalid = false;
     let playlistFlag = false;
+    let singleVideoUrlType = '';
+    let videoIdForSingleVideo = '';
 
     const [urlArray,setUrlArray] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -112,27 +114,139 @@ function Context({children}) {
           // Handle the case of an invalid YouTube URL
         }
       }
-    const isVideoURL = (url) => {
-        const videoURLPattern = /^(https?:\/\/)?(www\.)?youtube\.com\/watch\?v=([a-zA-Z0-9_-]{11})$/;
-        return videoURLPattern.test(url);
+      const isVideoURL = (url) => {
+        // const videoURLPattern = /^(https?:\/\/)?(www\.)?youtube\.com\/watch\?v=([a-zA-Z0-9_-]{11})$/;
+
+        const shortURLPattern = /^https:\/\/youtu\.be\/([a-zA-Z0-9_-]+)$/;
+        const liveURLPattern = /^https:\/\/www\.youtube\.com\/live\/([a-zA-Z0-9_-]+)\?/;
+        const regularURLPattern = /^https:\/\/www\.youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)$/;
+        const mobileURLPattern = /^https:\/\/m\.youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)&feature=youtu\.be$/;
+        const mobileURLPatternTwo = /^https:\/\/m\.youtube\.com\/watch\?v=[a-zA-Z0-9_-]{11}$/;
+        const addonURLPattern = /^https:\/\/youtu\.be\/[A-Za-z0-9_-]+(\?.*)?$/;
+        const addonURLPatternTwo =/https:\/\/m\.youtube\.com\/watch\?si=[A-Za-z0-9_-]+&v=[A-Za-z0-9_-]+&feature=youtu\.be/;
+
+
+        if (shortURLPattern.test(url)) {
+          singleVideoUrlType = 'shortURLPattern';
+
+          return shortURLPattern.test(url);
+        } else if (liveURLPattern.test(url)) {
+          singleVideoUrlType = 'liveURLPattern';
+
+          return liveURLPattern.test(url);
+        } else if (regularURLPattern.test(url)) {
+          singleVideoUrlType = 'regularURLPattern'; 
+          return regularURLPattern.test(url);
+        }else if (mobileURLPattern.test(url)) {
+          singleVideoUrlType = 'mobileURLPattern'; 
+          return mobileURLPattern.test(url);
+        }else if (mobileURLPatternTwo.test(url)) {
+          singleVideoUrlType = 'mobileURLPatternTwo'; 
+          return mobileURLPatternTwo.test(url);
+        }else if (addonURLPattern.test(url)) {
+          singleVideoUrlType = 'addonURLPattern'; 
+          return addonURLPattern.test(url);
+        }else if (addonURLPatternTwo.test(url)) {
+          singleVideoUrlType = 'addonURLPatternTwo'; 
+          return addonURLPatternTwo.test(url);
+        } else {
+           return false;
+        }
+
+        // return videoURLPattern.test(url);
       }
       
     const isPlaylistURL = (url) => {
         const playlistURLPattern = /^(https?:\/\/)?(www\.)?youtube\.com\/playlist\?list=([a-zA-Z0-9_-]+)$/;
         return playlistURLPattern.test(url);
       }
-    const enqueue = (event) => {
-        event.preventDefault();
-        checkYouTubeURL(inputUrl);
-        if(urlIsInvalid){
-            errorToast('Invalid YouTube URL');
-        }else{
-            // check if url is for playlist or single video 
-            if(playlistFlag) {
-            setReceivedPlaylistURL(true);    
-        }else{
-        if (inputUrl.trim() !== '') {
-            setUrlArray((prevUrl) => [...prevUrl, inputUrl]);
+
+    // functions to get video from URL for single video URL
+    const getVideoIdForShortUrl = (url) => url.split("/").pop();
+
+    const getVideoIdForLiveUrl = (url) => {
+      const videoId = url.split("/").pop();
+      return videoId.split("?")[0];
+    };
+    
+    const getVideoIdForRegularUrl = (url) => {
+      const urlParams = new URLSearchParams(new URL(url).search);
+      return urlParams.get("v");
+    };
+
+    const getVideoIdForMobileUrl = (url) => {
+      const pattern = /^https:\/\/m\.youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)&feature=youtu\.be$/;
+      const match = url.match(pattern);
+      return match ? match[1] : null;
+    };
+
+    const getVideoIdForMobileUrlTwo = url => {
+      const parts = url.split('?v=');
+      if (parts.length === 2) {
+        return parts[1];
+      }
+      return null;
+    };
+
+    const getVideoIdForAddonUrl = (url) => {
+      const match = url.match(/https:\/\/youtu\.be\/([A-Za-z0-9_-]+)/);
+      return match ? match[1] : null;
+    };
+
+    const getVideoIdForAddonUrlTwo = (url) => {
+      const match = url.match(/(?:\?|&)v=([^&]+)/);
+      return match ? match[1] : null;
+    };
+
+  const enqueue = (event) => {
+      event.preventDefault();
+      checkYouTubeURL(inputUrl);
+      if(urlIsInvalid){
+          errorToast('Invalid YouTube URL');
+      }else{
+          // check if url is for playlist or single video 
+          if(playlistFlag) {
+          setReceivedPlaylistURL(true);    
+      }else{
+      if (inputUrl.trim() !== '') {
+
+        // console.log('URL type ', singleVideoUrlType);
+
+        switch (singleVideoUrlType) {
+          case 'shortURLPattern':
+            videoIdForSingleVideo = getVideoIdForShortUrl(inputUrl);
+            break;
+          case 'liveURLPattern':
+            videoIdForSingleVideo = getVideoIdForLiveUrl(inputUrl);
+            break;
+          case 'regularURLPattern':
+            videoIdForSingleVideo = getVideoIdForRegularUrl(inputUrl);
+            break;
+          case 'mobileURLPattern':
+            videoIdForSingleVideo = getVideoIdForMobileUrl(inputUrl);
+            break;
+            case 'mobileURLPatternTwo':
+              videoIdForSingleVideo = getVideoIdForMobileUrlTwo(inputUrl);
+              break;
+          case 'addonURLPattern':
+              videoIdForSingleVideo = getVideoIdForAddonUrl(inputUrl);
+              // console.log(videoIdForSingleVideo);
+            break;
+            case 'addonURLPatternTwo':
+              videoIdForSingleVideo = getVideoIdForAddonUrlTwo(inputUrl);
+              // console.log(videoIdForSingleVideo);
+            break;
+        
+          default:
+            // console.log('fail',videoIdForSingleVideo);
+
+            break;
+        }
+
+          // console.log(videoIdForSingleVideo);
+            const formattedUrlForSingleVideo = `https://www.youtube.com/watch?v=${videoIdForSingleVideo}`;
+            // console.log(formattedUrlForSingleVideo);
+            setUrlArray((prevUrl) => [...prevUrl, formattedUrlForSingleVideo]);
             setInputUrl('');
             }
             successToast('Item has been added to the playlist 🤩');
@@ -447,6 +561,8 @@ function Context({children}) {
         setIsLoadingForStats:setIsLoadingForStats,
         isLikeBtnClicked:isLikeBtnClicked,
         setIsLikeBtnClicked:setIsLikeBtnClicked,
+        subsequentTotalSongsPlayedCount:subsequentTotalSongsPlayedCount,
+        setSubsequentTotalSongsPlayed:setSubsequentTotalSongsPlayed,
  
 
 
