@@ -276,6 +276,7 @@ function Context({children}) {
      setIsLoading(false);
     // console.log(data);
     setVideoDetails(data);
+    increaseTotalSongsPlayedCount();
     setCurrentIndex(previousUrlIndex);
     //  setIsLoading(false);
     //  console.log('Video details',videoDetails);
@@ -460,7 +461,7 @@ function Context({children}) {
         
         // increase songs played count
     const increaseTotalSongsPlayedCount= async () =>{
-      console.log('inside 1')
+      // console.log('inside 1')
     // check if details are empty
     if (totalSongsPlayed === 0 || totalSongsPlayed === undefined) {
         // console.log('blank value ')
@@ -471,7 +472,7 @@ function Context({children}) {
         //    console.log(promise);
            promise.then(
             function(response){
-                console.log('value-1',response);
+                // console.log('value-1',response);
                 setTotalSongsPlayed(response.totalsongsplayed);
                 // setDummyLikesCount(response.totallikes)
                 // setIsLikeBtnClicked(false);
