@@ -5,7 +5,8 @@ import {  toast } from 'react-toastify';
 import { API_FOR_FIRST_URL_DATA, API_TO_INCREASE_LIKE_COUNT, GET_STATS} from './services/apis';
 import { apiConnector } from './services/apiConnector';
 
-
+import { databases } from './appwrite/appwriteConfig'
+import { Permission, Role } from 'appwrite';
 
 
 export const topLevelContext = createContext();
@@ -55,12 +56,9 @@ function Context({children}) {
      const[isLikeBtnClicked,setIsLikeBtnClicked] = useState(false);
      const[subsequentTotalSongsPlayedCount,setSubsequentTotalSongsPlayed] = useState(false);
 
-    const [totalSongsPlayed, setTotalSongsPlayed] = useState([]); 
-    const [totalLikesCount, setTotalLikesCount] = useState([]); 
-     const [stats,setStats] = useState({
-      totalSongsPlayed:0,
-      totalLikesCount:0,
-  });
+    const [totalSongsPlayed, setTotalSongsPlayed] = useState(); 
+    const [totalLikesCount, setTotalLikesCount] = useState(); 
+   
 
 
 
@@ -338,6 +336,7 @@ function Context({children}) {
               };
              const response = await apiConnector('get', API_FOR_FIRST_URL_DATA.formattedUrl, null,null, params);
              const data = response.data;
+             increaseTotalSongsPlayedCount();
              setIsLoading(false);  
            //  console.log(data);
             setVideoDetails(data);
@@ -378,6 +377,8 @@ function Context({children}) {
             const data = response.data;
              setIsLoading(false);
             // console.log(data);
+            increaseTotalSongsPlayedCount();
+
             setVideoDetails(data);
            //  setIsLoading(false);
           //  console.log('Video details',videoDetails);
@@ -456,20 +457,59 @@ function Context({children}) {
           
         }
 
-        // increase likes count
-        const increaseLikesCount = async () => {
-          try {
-            const response = await apiConnector('get', API_TO_INCREASE_LIKE_COUNT.formattedUrl, null,null, null);
-          const data = response.data;
-          setStats(data.stats);
+        
+        // increase songs played count
+    const increaseTotalSongsPlayedCount= async () =>{
+      console.log('inside 1')
+    // check if details are empty
+    if (totalSongsPlayed === 0 || totalSongsPlayed === undefined) {
+        // console.log('blank value ')
+    } else {
+         
+        const promise = databases.updateDocument('6569f1688ba2c663cce5','6569f1933cac91c8b4ce','656c0a400d528ba40371',{totalsongsplayed:totalSongsPlayed+1},[Permission.read(Role.any())]     );
+    
+        //    console.log(promise);
+           promise.then(
+            function(response){
+                console.log('value-1',response);
+                setTotalSongsPlayed(response.totalsongsplayed);
+                // setDummyLikesCount(response.totallikes)
+                // setIsLikeBtnClicked(false);
+                // setTempFlagForLikesCount(true);
+            },
+            function(err){
+                // errorToast(`Error : ${err.message}`);
+            }
+           )
+      }
+ 
+      // setTotalLikesCount(dummyLikesCount);
 
-          } catch (error) {
-            
-          }
-
-        }
+    }
 
         // get stats
+        const fetchAllStats = async () => {
+          try {
+     
+            setIsLoadingForStats(true);
+            const promise = databases.listDocuments('6569f1688ba2c663cce5','6569f1933cac91c8b4ce');
+            
+            promise.then(
+              function(response){
+                  setTotalSongsPlayed(response.documents[0].totalsongsplayed);
+                  setTotalLikesCount(response.documents[0].totallikes);
+              },
+              function(err){
+                console.log(err.message);
+              }
+            )
+          } catch (error) {
+            console.log(error);
+            console.log('failed to fetch allstats');
+          }
+          setIsLoadingForStats(false);
+    
+        }
        
 
     const contextValue ={
@@ -554,7 +594,6 @@ function Context({children}) {
         setTotalLikesCount:setTotalLikesCount,
 
          
-        increaseLikesCount:increaseLikesCount,
         modalForPageRefresh:modalForPageRefresh,
         setModalForPageRefresh:setModalForPageRefresh,
         isLoadingForStats:isLoadingForStats,
@@ -563,6 +602,8 @@ function Context({children}) {
         setIsLikeBtnClicked:setIsLikeBtnClicked,
         subsequentTotalSongsPlayedCount:subsequentTotalSongsPlayedCount,
         setSubsequentTotalSongsPlayed:setSubsequentTotalSongsPlayed,
+        increaseTotalSongsPlayedCount:increaseTotalSongsPlayedCount,
+        fetchAllStats:fetchAllStats,
  
 
 

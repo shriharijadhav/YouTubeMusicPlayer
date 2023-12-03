@@ -25,6 +25,12 @@ import { apiConnector } from '../services/apiConnector';
 import { topLevelContext } from '../Context';
 
 import Likes from './Likes';
+
+import { databases } from '../appwrite/appwriteConfig'
+import { Permission, Role } from 'appwrite';
+
+
+
 const MainComponent = () => {
 
   const {theme} = useContext(topLevelContext);
@@ -57,13 +63,13 @@ const MainComponent = () => {
   const {successToast,warningToast,errorToast} = useContext(topLevelContext);
    
   const {openModalForLikes,setOpenModalForLikes} = useContext(topLevelContext);
-  const {stats,setStats} = useContext(topLevelContext);
-  const {isLoadingForStats,setIsLoadingForStats} = useContext(topLevelContext);
+   const {isLoadingForStats,setIsLoadingForStats} = useContext(topLevelContext);
   const {isLikeBtnClicked,setIsLikeBtnClicked} = useContext(topLevelContext);
   const {setTotalLikesCount} = useContext(topLevelContext);
   const {totalSongsPlayed,setTotalSongsPlayed} = useContext(topLevelContext);
   const {totalLikesCount} = useContext(topLevelContext);
   const {subsequentTotalSongsPlayedCount,setSubsequentTotalSongsPlayedCount} = useContext(topLevelContext);
+  const {fetchAllStats,increaseTotalSongsPlayedCount} = useContext(topLevelContext);
 
 const handleModalOpenForPlaylist = () => {
      setOpenModalForPlaylist(true);
@@ -91,7 +97,11 @@ const handleModalOpenForPlaylist = () => {
   
     }
 
+    
+    fetchAllStats();
+
    
+    
 
   
     const getFirstUrlData = async () => {
@@ -115,12 +125,16 @@ const handleModalOpenForPlaylist = () => {
      const response = await apiConnector('get', API_FOR_FIRST_URL_DATA.formattedUrl, null,null, params);
     
       const data = response.data;
- 
-     setIsLoading(false);  
+     
+      increaseTotalSongsPlayedCount();
+            setIsLoading(false);  
     
     // console.log(data);
     setVideoDetails(data);
-    setStats(data.stats);
+
+
+
+
     // console.log(data);
     SetFlagForFirstSingleVideoFetch(prev=>prev+1);
      
@@ -164,6 +178,7 @@ const handleModalOpenForPlaylist = () => {
           setIsLoading(false);  
         
           setVideoDetails(data);
+          increaseTotalSongsPlayedCount();
           setLocalFetchTwo(false);
           successToast(`Playlist loaded with ${urlArray.length} items 🤩`);
           }
@@ -212,6 +227,8 @@ const handleModalOpenForPlaylist = () => {
   
   // console.log(data);
   setVideoDetails(data);
+  increaseTotalSongsPlayedCount();
+
   
   // setDataFetchedForFirstURL(true);
   // console.log('Video details',videoDetails);

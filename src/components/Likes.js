@@ -11,95 +11,35 @@ import { GET_TOTAL_LIKES_COUNT, GET_TOTAL_SONGS_PLAYED } from '../services/apis'
 import { apiConnector } from '../services/apiConnector';
 import LikeCountOnly from './LikeCountOnly';
  
+import { databases } from '../appwrite/appwriteConfig'
 
  
 
 function Likes() {
+  
   // const {stats} = useContext(topLevelContext);
-  const {totalSongsPlayed,totalLikesCount}  = useContext(topLevelContext);
-  // console.log('one', stats);
-  // const tempSongsPlayed = ;
-  // const [tempSongsPlayed, setTempSongsPlayed] = useState(setVideoDetails.songsPlayed);
+  const {totalSongsPlayed }  = useContext(topLevelContext);
+   
    const{isLoadingForStats} = useContext(topLevelContext);
   // console.log(isLoadingForStats)
   const [isClicked, setIsClicked] = useState(false);
 
-  const {setOpenModalForLikes,setStats} = useContext(topLevelContext);
-  const {increaseLikesCount} = useContext(topLevelContext);
-  const {isLikeBtnClicked,setIsLikeBtnClicked,setTotalLikesCount,setIsLoadingForStats, setSubsequentTotalSongsPlayedCount,setTotalSongsPlayed,subsequentTotalSongsPlayedCount} = useContext(topLevelContext);
+  const {setOpenModalForLikes} = useContext(topLevelContext);
+  // const {increaseLikesCount} = useContext(topLevelContext);
+  const {fetchAllStats } = useContext(topLevelContext);
 
-  const handleClick = () => {
-      increaseLikesCount();
-      // console.log('handleClick')
-      setIsClicked(true);
-      setIsLikeBtnClicked(true);
+
+    // to fetch data from appwrite database
+
+
+
+    
+     
+    // ends here 
+
+ 
+
   
-      setTimeout(() => {
-        setIsClicked(false);
-      }, 200); // Adjust the duration of the animation
-    };
-
-    useEffect(() => {
-      const getTotalSongsPlayed = async () =>{
-        try {
-         setIsLoadingForStats(true);
-         const response = await apiConnector('get', GET_TOTAL_SONGS_PLAYED.formattedUrl, null,null, null);
-       
-         const data = response.data;
-         setTotalSongsPlayed(data.totalSongsPlayed);
-         setIsLoadingForStats(false);
-         setSubsequentTotalSongsPlayedCount(true);
-   
-        } catch (error) {
-         
-        }
-         // console.log(data)
-       }
-          getTotalSongsPlayed();
-   
-    
-   
-        
-        // for total likes starts
-       const getTotalLikesCount = async () =>{
-         try {
-          setIsLoadingForStats(true);
-          const response = await apiConnector('get', GET_TOTAL_LIKES_COUNT.formattedUrl, null,null, null);
-        
-          const data = response.data;
-          setTotalLikesCount(data.totalLikesCount);
-          setIsLoadingForStats(false);
-         } catch (error) {
-          
-         }
-          // console.log(data)
-        }
-        getTotalLikesCount();
-
-         
-   
-       // for total likes ends
-         
-       
-   
-      return () => {
-         
-      }
-    }, [totalSongsPlayed,totalLikesCount])
-    
-
-  //  useEffect(() => {
-
-  //   if(isLikeBtnClicked){
-  //     // console.log('clicked');
-  //     setIsLikeBtnClicked(false);
-
-
-  //   }   
-  //    return () => {
-        
-  //    }
-  //  }, [isLikeBtnClicked ])
    
 return (
   <div className='modalBackground '>
