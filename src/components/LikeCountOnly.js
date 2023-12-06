@@ -17,13 +17,12 @@ function LikeCountOnly() {
 
 
 
-    const { setIsLikeBtnClicked,increaseLikesCount,totalLikesCount,setIsLoadingForStats,setTotalLikesCount,isLikeBtnClicked} = useContext(topLevelContext);
+    const { setIsLikeBtnClicked,totalLikesCount,setIsLoadingForStats,setTotalLikesCount,isLikeBtnClicked} = useContext(topLevelContext);
     const [dummyLikesCount,setDummyLikesCount] = useState(totalLikesCount);
     const [isClicked, setIsClicked] = useState(false);
     
   const handleClick = () => {
-    // setTotalLikesCount(prev=>prev+1);
-    // console.log('handleClick')
+     
     setIsClicked(true);
     setIsLikeBtnClicked(true);
  
